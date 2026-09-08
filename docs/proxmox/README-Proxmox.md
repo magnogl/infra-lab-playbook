@@ -81,9 +81,9 @@ Essa mensagem de aviso é o comportamento padrão do Proxmox VE quando o servido
 Por padrão, o Proxmox VE vem configurado de fábrica apontando para o **Proxmox VE Enterprise Repository** e para obter atualizações de segurança e novos recursos no seu laboratório sem receber erros do gerenciador de pacotes (APT), você precisa desativar o repositório Enterprise e habilitar o repositório No-Subscription
 
 ## Método 1: Pela Interface Web (Mais fácil)
-No menu esquerdo, clique no seu nó do Proxmox.
+No *menu esquerdo*, clique no seu nó do Proxmox.
 
-Vá em Updates (Atualizações) *Repositories (Repositórios)*.
+Vá em *Updates* (Atualizações) *Repositories* (Repositórios).
 
 Na lista inferior, selecione a linha que aponta para o repositório *pve-enterprise* e clique em *Disable* (Desativar).
 
