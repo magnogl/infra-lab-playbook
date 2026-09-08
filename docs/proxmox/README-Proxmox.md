@@ -81,19 +81,20 @@ Essa mensagem de aviso é o comportamento padrão do Proxmox VE quando o servido
 Por padrão, o Proxmox VE vem configurado de fábrica apontando para o **Proxmox VE Enterprise Repository** e para obter atualizações de segurança e novos recursos no seu laboratório sem receber erros do gerenciador de pacotes (APT), você precisa desativar o repositório Enterprise e habilitar o repositório No-Subscription
 
 ## Método 1: Pela Interface Web (Mais fácil)
-No menu esquerdo, clique no seu nó do Proxmox.
-Vá em Updates (Atualizações) *Repositories (Repositórios)*.
-Na lista inferior, selecione a linha que aponta para o repositório *pve-enterprise* e clique em *Disable* (Desativar).
-Clique no botão *Add* (Adicionar) no topo da tabela, selecione *No-Subscription* no menu de opções e adicione.
+> No menu esquerdo, clique no seu nó do Proxmox.
+> Vá em Updates (Atualizações) *Repositories (Repositórios)*.
+> Na lista inferior, selecione a linha que aponta para o repositório *pve-enterprise* e clique em *Disable* (Desativar).
+> Clique no botão *Add* (Adicionar) no topo da tabela, selecione *No-Subscription* no menu de opções e adicione.
+
 (Opcional) Se você planeja utilizar o Ceph, desative também o repositório enterprise do Ceph e adicione a versão "Ceph No-Subscription".
 
 ## Método 2: Pela Linha de Comando (CLI)
 Como você está instalando a versão mais recente (Proxmox VE 9, baseado no Debian 13 Trixie), o sistema utiliza o formato de repositórios modernos deb822 em arquivos .sources.
 Abra o terminal do seu Proxmox (via SSH ou console de gerenciamento) e faça os seguintes ajustes:
 
-Desative o Repositório Enterprise: Edite o arquivo /etc/apt/sources.list.d/pve-enterprise.sources e adicione a linha Enabled: no ao bloco do repositório, ou simplesmente comente o seu conteúdo.
+> Desative o Repositório Enterprise: Edite o arquivo /etc/apt/sources.list.d/pve-enterprise.sources e adicione a linha Enabled: no ao bloco do repositório, ou simplesmente comente o seu conteúdo.
 
-Habilite o Repositório Sem Subscrição: Edite o arquivo /etc/apt/sources.list.d/proxmox.sources e configure o bloco para habilitar o repositório convencional:
+> Habilite o Repositório Sem Subscrição: Edite o arquivo /etc/apt/sources.list.d/proxmox.sources e configure o bloco para habilitar o repositório convencional:
 
     Types: deb
     URIs: http://download.proxmox.com/debian/pve
@@ -106,4 +107,4 @@ Atualize o Servidor: Por fim, execute a atualização do banco de dados de pacot
     apt update
     apt full-upgrade -y
 
-    Nota: Embora existam scripts comunitários populares na internet para remover permanentemente o pop-up de aviso do navegador alterando arquivos JavaScript internos do Proxmox (proxmoxlib.js), a documentação oficial do Proxmox não fornece ou apoia um procedimento nativo para remover este alerta visual.
+*Nota: Embora existam scripts comunitários populares na internet para remover permanentemente o pop-up de aviso do navegador alterando arquivos JavaScript internos do Proxmox (proxmoxlib.js), a documentação oficial do Proxmox não fornece ou apoia um procedimento nativo para remover este alerta visual.*
