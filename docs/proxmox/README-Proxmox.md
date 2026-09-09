@@ -112,3 +112,26 @@ Atualize o Servidor: Por fim, execute a atualização do banco de dados de pacot
     apt full-upgrade -y
 
 *Nota: Embora existam scripts comunitários populares na internet para remover permanentemente o pop-up de aviso do navegador alterando arquivos JavaScript internos do Proxmox (proxmoxlib.js), a documentação oficial do Proxmox não fornece ou apoia um procedimento nativo para remover este alerta visual.*
+
+---
+
+# Como remover a mensagem "Invalid Subscription" toda vez que loga na interface web
+
+Essa mensagem aparece porque o Proxmox é gratuito mas tem um modelo de assinatur  enterprise. Sem licença paga ele mostra esse popup toda vez que loga na interface web.
+
+A correção é simples, remove a verificação do arquivo JavaScript responsável pelo popup:
+```bash
+sed -i.bak "s/if (data.status !== 'Active')/if (false)/g" /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+```
+**O que é sed:**
+Stream editor. Ferramenta que faz busca e substituição em arquivos de texto. Aqui estamos substituindo a condição que exibe o popup por false, fazendo ela nunca ser verdadeira.
+
+```bash
+-i.bak
+```
+Edita o arquivo original e cria um backup com extensão .bak antes de modificar. Se algo der errado, você tem o original.
+
+Depois reinicia o serviço da interface web:
+```bash
+systemctl restart pveproxy
+```
